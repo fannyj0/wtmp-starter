@@ -6,17 +6,17 @@
     <link rel="stylesheet" href="assets/styles.css">
   </head>
   <body>
+    <div class="page">
+      <div class="resultParas">
+        <p class="guesses"></p>
+        <p class="lastResult"></p>
+        <p class="lowOrHi"></p>
+      </div>
 
-    <div class="resultParas">
-      <p class="guesses"></p>
-      <p class="lastResult"></p>
-      <p class="lowOrHi"></p>
+      <label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField">
+      <input type="submit" value="Submit guess" class="guessSubmit">
+      <div id="timer"></div>
     </div>
-
-    <label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField">
-    <input type="submit" value="Submit guess" class="guessSubmit">
-    <div id="timer"></div>
-
   </body>
 
 </html>

@@ -52,7 +52,7 @@ let setGameOver = () => {
   resetButton = document.createElement('button');
   resetButton.textContent = 'Start new game';
   document.body.appendChild(resetButton);
-  resetButton.addEventListener('click', resetGame, resetTimeCounter);
+  resetButton.addEventListener('click', resetGame);
 };
 
 let resetGame = () => {
@@ -72,20 +72,12 @@ let resetGame = () => {
 
   lastResult.style.backgroundColor = 'white';
 
-  randomNumber = Math.floor(Math.random() * 100) + 1;
+  randomNumber = Math.floor(Math.random() * highnum) + lownum;
 };
 
 
-
-/*
-const timestamp = Date.now() * 1000;
- guessSubmit.addEventListener('click', timestamp);
-
-document.write("Your time is: " + timestamp);
-*/
-
 let startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
-localStorage.setItem("startTime", startTime); // Store it if I want to restart the timer on the next page
+
 
 let startTimeCounter = () => {
     let now = Math.floor(Date.now() / 1000); // get the time now
@@ -96,34 +88,29 @@ let startTimeCounter = () => {
     s = checkTime(s); // add a leading zero if it's single digit
     document.getElementById("timer").innerHTML = m + ":" + s; // update the element where the timer will appear
     let t = setTimeout(startTimeCounter, 500); // set a timeout to update the timer
+
+    if(guessCount === 10){
+      stopTimeCounter;
+    }
 };
 
-function checkTime(i) {
+function checkTime(i) {  // add zero in front of numbers < 10
     if (i < 10) {
       i = "0" + i;
-    };  // add zero in front of numbers < 10
+    };
     return i;
 }
 
-let newTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
-let resetTimeCounter = () =>{
-  let now = Math.floor(Date.now() / 1000); // get the time now
-    let diff = now - newTime; // diff in seconds between now and start
-    let m = Math.floor(diff / 60); // get minutes value (quotient of diff)
-    let s = Math.floor(diff % 60); // get seconds value (remainder of diff)
-    m = checkTime(m); // add a leading zero if it's single digit
-    s = checkTime(s); // add a leading zero if it's single digit
-    document.getElementById("timer").innerHTML = m + ":" + s; // update the element where the timer will appear
-    let t = setTimeout(startTimeCounter, 500); // set a timeout to update the timer
-};
-
-guessSubmit.addEventListener('click', startTimeCounter());
-
 function stopTimeCounter(){
-  if(setGameOver){
-    startTimeCounter.disabled;
-  }
+  let endTime = (startTimeCounter - Date.now());
 }
+
+
+guessSubmit.addEventListener('click', startTimeCounter);
+
+resetButton.addEventListener('click', startTimeCounter);
+
+
 
 
 
