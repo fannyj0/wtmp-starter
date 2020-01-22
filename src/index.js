@@ -13,17 +13,21 @@ const guessField = document.querySelector('.guessField');
 
 let guessCount = 1;
 let resetButton;
+let startTime;
 let endTime;
 
 let checkGuess = () => {
   let userGuess = Number(guessField.value);
   if (guessCount === 1) {
+    startTime = Date.now();
     guesses.textContent = 'Previous guesses: ';
   }
   guesses.textContent += userGuess + ' ';
 
   if (userGuess === randomNumber) {
-    lastResult.textContent = 'Congratulations! You got it right!' + endTime;
+    const endTime = Date.now();
+    const totalTime = Math.trunc((endTime - startTime) / 1000);
+    lastResult.textContent = 'Congratulations! You got it right! Number of your guesses: '  +guessCount + ' and time: ' + totalTime +'seconds';
     lastResult.style.backgroundColor = 'green';
     lowOrHi.textContent = '';
     document.getElementById("timer").style.display = "none";
@@ -79,7 +83,7 @@ let resetGame = () => {
   randomNumber = Math.floor(Math.random() * highnum) + lownum;
 };
 
-
+/*
 let startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
 
 let startTimeCounter = () => {
@@ -112,7 +116,7 @@ guessSubmit.addEventListener('click', startTimeCounter);
 
 resetButton.addEventListener('click', startTimeCounter);
 
-
+*/
 
 
 
