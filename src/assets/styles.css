@@ -1,9 +1,224 @@
-body {
-  margin: 10%;
-  font-size: 32px;
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato|Roboto+Slab&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --main-bg-color: #43E04F;
+    --sec-bg-color: #940E3F;
 }
 
+html{
+    font-size: 16px;
+}
 
-input{
-  height: 30px;
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    line-height: 150%;
+}
+
+/* ///////////// NAV /////////// */
+a{
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--sec-bg-color);
+}
+a:hover{
+    color: var(--sec-bg-color);
+    background-color: var(--main-bg-color);
+}
+
+nav{
+    display: flex;
+    position: sticky;
+    top: 0;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: white;
+}
+nav ul{
+  display: flex;
+  align-content: center;
+  list-style-type: none;
+}
+nav ul a {
+    padding: 1rem;
+    margin: 0 1em;
+    font-size: 1.5em;
+}
+nav span{
+    width: 20vw;
+}
+#search-form{
+    position: relative;
+}
+#search{
+  width: 80%;
+  float: right;
+  height: 40px;
+  border-radius: 5px;
+  border-color: var(--sec-bg-color);
+  padding-left: 35px;
+  color: black;
+  outline: none;
+}
+#search-img{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(50%);
+    left: 70px;
+}
+#search-img > svg{
+    fill: var(--sec-bg-color);
+}
+
+/* //////////// HEADER /////////////// */
+.header{
+    display: flex;
+    height: 20vw;
+}
+.header h1{
+    font-size: 60px;
+    margin: 0.75rem 0;
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 800;
+}
+.header p{
+    font-size: 23px;
+    font-family: 'roboto slab', sans-serif;
+    font-weight: 400;
+}
+
+.logoarea{
+  background-color: var(--main-bg-color);
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.imgarea{
+  background: var(--main-bg-color) url("../img/black-frying-pan-with-spaghetti-sauce-near-brown-wooden-691114.jpg") no-repeat center center/cover;
+  flex: 6;
+}
+#triangle{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20vw 0 0 200px;
+  border-color: transparent transparent transparent var(--main-bg-color);
+}
+
+/* /////////////// TEKSTI //////////////// */
+.text{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 24px;
+    padding: 2em 0;
+}
+
+/* ////////////////// RAVINTOLAT ////////////////// */
+.restaurants {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-content: flex-start;
+  }
+  .restaurant > img {
+    justify-content: flex-start;
+    float: left;
+    align-self: center;
+    width: 7.5em;
+    height: 7.5em;
+    border: black;
+    border: 1px solid black;
+    background-color: white;
+    margin: 10px 10px;
+  }
+  .item{
+    display: flex;
+    width: 40vw;
+    height: 160px;
+    position: relative;
+    overflow: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border-radius: 1em;
+    background-color: rgb(231, 231, 231);
+    border-style: solid;
+    border-width: thin;
+  }
+  #location-img{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: 76%;
+    transform: translateX(900%);
+    left: 70px;
+}
+#location-img:hover{
+    fill: var(--main-bg-color);
+}
+.restaurants h1{
+    font-size: 900;
+    display: flex;
+    font-size: 21px;
+    text-align: left;
+    height: 30px;
+    margin: 10px 0 0 10px;
+}
+  .restaurant p{
+      display: flex;
+      font-family: 'lato', sans-serif;
+      text-align: left;
+      justify-content: flex-start;
+      height: fit-content;
+      width: fit-content;
+      margin-left: 24%;
+      font-size: 10px;
+  }
+
+
+/* //////////// LISÄÄ RAVINTOLA ////////////*/
+.add{
+    display: flex;
+    width: 40vw;
+    height: 60px;
+    margin-top: 10px;
+    position: relative;
+    overflow: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border-radius: 1em;
+    border-color: black;
+    border-style: dotted;
+    border-width: thin;
+}
+#add-img{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: -3%;
+    transform: translateX(900%);
+    left: -8%;
+    fill: #9BADBF;
+}
+#add-img:hover{
+    fill: #343A40;
+}
+
+button{
+  margin-top: 20px;
+  width: fit-content;
+  height: fit-content;
 }
