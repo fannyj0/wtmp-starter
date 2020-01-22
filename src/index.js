@@ -26,14 +26,14 @@ let checkGuess = () => {
 
   if (userGuess === randomNumber) {
     const endTime = Date.now();
-    const totalTime = Math.trunc((endTime - startTime) / 1000);
-    lastResult.textContent = 'Congratulations! You got it right! Number of your guesses: '  +guessCount + ' and time: ' + totalTime +'seconds';
+    const Time = Math.floor((endTime - startTime) / 1000);
+    lastResult.textContent = 'Congratulations! You got it right! Number of your guesses: '  +guessCount + ' and time: ' + Time +' seconds';
     lastResult.style.backgroundColor = 'green';
     lowOrHi.textContent = '';
     document.getElementById("timer").style.display = "none";
     setGameOver();
   } else if (guessCount === 10) {
-    lastResult.textContent = '!!!GAME OVER!!!';
+    lastResult.textContent = '!!!GAME OVER!!!' ;
     document.getElementById("timer").style.display = "none";
     setGameOver();
   } else {
