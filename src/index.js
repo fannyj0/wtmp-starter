@@ -2,6 +2,7 @@ const highnum = 20;
 const lownum = 1;
 
 let randomNumber = Math.floor(Math.random() * highnum) + lownum;
+console.log("random numer " + randomNumber);
 
 const guesses = document.querySelector('.guesses');
 const lastResult = document.querySelector('.lastResult');
@@ -12,6 +13,7 @@ const guessField = document.querySelector('.guessField');
 
 let guessCount = 1;
 let resetButton;
+let endTime;
 
 let checkGuess = () => {
   let userGuess = Number(guessField.value);
@@ -21,12 +23,14 @@ let checkGuess = () => {
   guesses.textContent += userGuess + ' ';
 
   if (userGuess === randomNumber) {
-    lastResult.textContent = 'Congratulations! You got it right!';
+    lastResult.textContent = 'Congratulations! You got it right!' + endTime;
     lastResult.style.backgroundColor = 'green';
     lowOrHi.textContent = '';
+    document.getElementById("timer").style.display = "none";
     setGameOver();
   } else if (guessCount === 10) {
     lastResult.textContent = '!!!GAME OVER!!!';
+    document.getElementById("timer").style.display = "none";
     setGameOver();
   } else {
     lastResult.textContent = 'Wrong!';
@@ -78,7 +82,6 @@ let resetGame = () => {
 
 let startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
 
-
 let startTimeCounter = () => {
     let now = Math.floor(Date.now() / 1000); // get the time now
     let diff = now - startTime; // diff in seconds between now and start
@@ -88,10 +91,8 @@ let startTimeCounter = () => {
     s = checkTime(s); // add a leading zero if it's single digit
     document.getElementById("timer").innerHTML = m + ":" + s; // update the element where the timer will appear
     let t = setTimeout(startTimeCounter, 500); // set a timeout to update the timer
+    document.getElementById("timer").style.display = "block";
 
-    if(guessCount === 10){
-      stopTimeCounter;
-    }
 };
 
 function checkTime(i) {  // add zero in front of numbers < 10
@@ -102,7 +103,8 @@ function checkTime(i) {  // add zero in front of numbers < 10
 }
 
 function stopTimeCounter(){
-  let endTime = (startTimeCounter - Date.now());
+  endTime = (startTimeCounter - Date.now());
+  return document.getElementById("timer").innerHTML = endTime;
 }
 
 
