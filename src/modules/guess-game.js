@@ -1,8 +1,8 @@
-const highnum = 20;
-const lownum = 1;
+const minLimit = 1, maxLimit = 100;
+const maxGuessCount = 100;
 
-let randomNumber = Math.floor(Math.random() * highnum) + lownum;
-console.log("random numer " + randomNumber);
+let randomNumber = Math.floor(Math.random() * maxLimit) + minLimit;
+console.log("random numer ", randomNumber);
 
 const guesses = document.querySelector('.guesses');
 const lastResult = document.querySelector('.lastResult');
@@ -14,10 +14,19 @@ const guessField = document.querySelector('.guessField');
 let guessCount = 1;
 let resetButton;
 let startTime;
-let endTime;
+//let endTime;
 
-let checkGuess = () => {
-  let userGuess = Number(guessField.value);
+const checkGuess = (input) => {
+  //console.log('checkguess input', input);
+  let userGuess;
+  //-1: too low, 0: correct, +1: too high
+  let guessDirection;
+  if(typeof input === 'object'){
+    userGuess = Number(guessField.value);
+  }else{
+    userGuess = input;
+  }
+
   if (guessCount === 1) {
     startTime = Date.now();
     guesses.textContent = 'Previous guesses: ';
@@ -30,20 +39,24 @@ let checkGuess = () => {
     lastResult.textContent = 'Congratulations! You got it right! Number of your guesses: '  +guessCount + ' and time: ' + Time +' seconds';
     lastResult.style.backgroundColor = 'green';
     lowOrHi.textContent = '';
-    document.getElementById("timer").style.display = "none";
+    //document.getElementById("timer").style.display = "none";
     setGameOver();
-  } else if (guessCount === 10) {
+    return 0;
+  } else if (guessCount === maxGuessCount) {
     lastResult.textContent = '!!!GAME OVER!!!' ;
-    document.getElementById("timer").style.display = "none";
+    //document.getElementById("timer").style.display = "none";
     setGameOver();
   } else {
     lastResult.textContent = 'Wrong!';
     lastResult.style.backgroundColor = 'red';
     if(userGuess < randomNumber) {
       lowOrHi.textContent = 'Last guess was too low!';
+      return -1;
     } else if(userGuess > randomNumber) {
       lowOrHi.textContent = 'Last guess was too high!';
+      return 1;
     }
+    //return false;
   }
 
   guessCount++;
@@ -56,7 +69,7 @@ const StartGame = () =>{
 };
 
 
-let setGameOver = () => {
+const setGameOver = () => {
   guessField.disabled = true;
   guessSubmit.disabled = true;
   resetButton = document.createElement('button');
@@ -65,13 +78,17 @@ let setGameOver = () => {
   resetButton.addEventListener('click', resetGame);
 };
 
-let resetGame = () => {
+const resetGame = () => {
   guessCount = 1;
 
   const resetParas = document.querySelectorAll('.resultParas p');
+  for(const p of resetParas){
+    p.textContent = '';
+  }
+  /*
   for (let i = 0 ; i < resetParas.length ; i++) {
     resetParas[i].textContent = '';
-  }
+  }*/
 
   resetButton.parentNode.removeChild(resetButton);
 
@@ -82,13 +99,13 @@ let resetGame = () => {
 
   lastResult.style.backgroundColor = 'white';
 
-  randomNumber = Math.floor(Math.random() * highnum) + lownum;
+  randomNumber = Math.floor(Math.random() * maxLimit) + minLimit;
 };
 
-export {StartGame};
+export {StartGame, checkGuess, resetGame};
 
 
-/*
+/* //Juokseva timer
 let startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
 
 let startTimeCounter = () => {
