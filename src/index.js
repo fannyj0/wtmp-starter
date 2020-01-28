@@ -27,9 +27,24 @@ const testGamePlay = () => {
     }
   }
   return guessCounter;
-  console.log("guesscounter ^");
 };
 //testGamePlay();
+
+let DONE = RIGHT = 0, HIGH = 1, LOW = -1;
+
+const compGuess = (low, high) =>{
+  let g = Math.floor((low + high) / 2);
+  let result = getResult(g);
+  switch (result){
+    case RIGHT:
+      return DONE;
+    case LOW:
+      return compGuess(g + 1, high);
+    case HIGH:
+      return compGuess(low, g - 1);
+  }
+};
+
 
 let guessCounts = [];
 for(let i=0; i<10; i++){
