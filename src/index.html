@@ -3,20 +3,16 @@
   <head>
     <meta charset="utf-8"/>
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" type="text/css" href="./assets/styles.css">
   </head>
   <body>
-    <div class="page">
-      <div class="resultParas">
-        <p class="guesses"></p>
-        <p class="lastResult"></p>
-        <p class="lowOrHi"></p>
-      </div>
 
-      <label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField">
-      <input type="submit" value="Submit guess" class="guessSubmit">
-      <div id="timer"></div>
-    </div>
+    <h1>REGEX</h1>
+    <textarea type="text" id="input"></textarea>
+    <button type="submit" id="submit">Submit</button>
+    <p id="output"></p>
+
+
   </body>
 
 </html>

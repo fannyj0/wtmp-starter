@@ -1,43 +1,50 @@
-/*Best algorithm would be binary algorithm where the computer first asks 50 and
-then if it is too high then 25 and so on halving it, or if it's too low it asks
-75 and adds more to it*/
+const meals =
+[
+    {name: 'Lingonberry jam', price: 4.00},
+    {name: 'Mushroom and bean casserole', price: 5.50},
+    {name: 'Chili-flavoured wheat', price: 3.00},
+    {name: 'Vegetarian soup', price: 4.80},
+    {name: 'Pureed root vegetable soup with smoked cheese', price: 8.00}
+];
 
-import {StartGame, checkGuess, resetGame} from './modules/guess-game';
 
-StartGame();
+let textfield;
+let output;
+let submit;
 
-
-const testGamePlay = () => {
-  let guessCounter = 0;
-  let myGuess = 50;
-  let gameOver = false;
-  while(!gameOver){
-    //console.log(myGuess);
-    let correctGuess = checkGuess(myGuess);
-    guessCounter ++;
-    if(correctGuess === 0){
-      gameOver = true;
-      resetGame();
-    }else if (correctGuess < 0){
-      //myGuess += 25; //too low, ask 75
-      myGuess++;
-    }else{
-      //myGuess -= 25; //too high, ask 25
-      myGuess--;
-    }
-  }
-  return guessCounter;
-  console.log("guesscounter ^");
+const setup = () =>{
+  noCanvas();
+  textfield = select("#input");
+  //textfield.changed(newText);
+  output = select('#output');
+  submit = select("#submit");
+  submit.mousePressed(newText);
 };
-//testGamePlay();
 
-let guessCounts = [];
-for(let i=0; i<10; i++){
-  guessCounts.push(testGamePlay());
-}
-console.log('guess counts', guessCounts);
-//guessCounts.length; arrayn koko
+const newText = () =>{
+  const s = textfield.value();
+  const r = /[A-ZÖÄÅ]{1}[a-zöäå]{4, 64}[,\/\W\-]/;
+  //const r = new RegExp ('[A-ZÖÄÅ]{1}[a-zöäå]{4, 64}[,\/\W\-]');
+  document.getElementById("output").innerHTML = r.test(s);
+};
+/*
+const valid = () => {   //ei toimi??
+  const r = /^[A-ZÖÄÅ]{1}[a-zöäå]{4, 64}\W\d$/;
+  name.test(r);
+  return true;
+};
+*/
+let sortedMeals = meals.sort((a, b) => {
+  return a.price - b.price;
+});
+console.log('Sorted meals', sortedMeals);
 
-let maxGuessCount = Math.max(...guessCounts);
-console.log(maxGuessCount);
+const filrered = meals.filter(price => price < 5); //ei toimi
+console.log('Filtered meals', filrered);
+
+const raised = meals.map((price) => price * 1.15); //ei toimi
+console.log('Raised meals', raised);
+
+const sum = meals.reduce((acc, price) => acc + price); //ei toimi
+console.log('Whole menu', sum);
 
