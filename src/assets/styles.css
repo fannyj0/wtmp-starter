@@ -1,12 +1,11 @@
 body {
   padding-left: 36%;
+  padding-top: 5%;
   font-size: 32px;
 }
-input{
+#input{
   height: 30px;
+  width: 25%;
 }
-#output{
-  height: 100px;
-  width: 200px;
-  background-color: aquamarine;
-}
+
+
