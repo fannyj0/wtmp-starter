@@ -52,6 +52,5 @@ const raised = meals.map(n => (n.price * 1.15).toFixed(2));
 console.log('Raised meals', raised);
 
 //5. kohta: reduce
-const sum = meals.reduce((acc, f) => acc + f.price);
+const sum = meals.reduce((a, b) => ({price: a.price + b.price}));
 console.log('Whole menu', sum);
-
