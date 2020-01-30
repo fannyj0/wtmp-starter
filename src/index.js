@@ -1,3 +1,5 @@
+import {getParsedMenuFazer} from './modules/fazer-data';
+
 const meals =
 [
     {name: 'Lingonberry jam', price: 4.00},
@@ -54,3 +56,9 @@ console.log('Raised meals', raised);
 //5. kohta: reduce
 const sum = meals.reduce((a, b) => ({price: a.price + b.price}));
 console.log('Whole menu', sum);
+
+//B
+const veggie = getParsedMenuFazer.sort((veg) => {
+  return {Diets: "Veg"};
+});
+console.log(veggie);
