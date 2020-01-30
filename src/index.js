@@ -45,8 +45,13 @@ const pickRandomCourse = courses => {
   return courses[randomIndex];
 };
 const displayRandomCourse = () => {
-  // TODO: add support for Fazer menu and lang
-  alert(pickRandomCourse(SodexoData.coursesFi));
+  if(lang === 'fi'){
+    alert('Sodexo: '+ pickRandomCourse(SodexoData.coursesFi) + '\n'+ 'Fazer: '+ pickRandomCourse(getParsedMenuFazer('fi')));
+
+  }else{
+    alert('Sodexo: '+ pickRandomCourse(SodexoData.coursesEn) + '\n'+ 'Fazer: '+ pickRandomCourse(getParsedMenuFazer('en')));
+  }
+
 };
 
 const switchLanguage = () => {
@@ -62,7 +67,6 @@ const switchLanguage = () => {
 };
 
 const renderSortedMenu = () => {
-  // TODO: fix lang issue
   if(lang === 'fi'){
     renderMenu('sodexo', sortCourses(SodexoData.coursesFi));
     renderMenu('fazer', sortCourses(getParsedMenuFazer('fi')));
