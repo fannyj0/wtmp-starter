@@ -58,7 +58,9 @@ const sum = meals.reduce((a, b) => ({price: a.price + b.price}));
 console.log('Whole menu', sum);
 
 //B
+/*
 const veggie = getParsedMenuFazer.sort((veg) => {
   return {Diets: "Veg"};
 });
 console.log(veggie);
+*/
