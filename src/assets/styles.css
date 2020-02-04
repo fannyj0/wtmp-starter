@@ -7,3 +7,7 @@ div{
   height: 100vh;
   background-color: wheat;
 }
+p{
+  font-size: large;
+  justify-content: center;
+}
