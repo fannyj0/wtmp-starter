@@ -1,10 +1,29 @@
 /* Game cheat code */
-/* document.addEventListener('keydown', event =>{
+document.addEventListener('keydown', event =>{
   console.log('keydown', event.key, event.keyCode);
-  if(event.keyCode === 72 && event.keyCode === 69){
+  if(event.keyCode === 72){
     alert('Secret unlocked');
   }
-}); */
+});
+
+/* const map = {};
+onkeydown = onkeyup = (e) =>{
+  e = e || event;
+  map[e.keyCode] = e.type == 'keydown';
+  if(map[72] && map[69] && map[76] && map[76] && map[79]){
+    alert('Hello');
+  }
+};
+
+test.innerHTML = '';
+let i, l = map.lenght;
+for(i = 0; i<l; i++){
+  if(map[i]){
+    Element.innerHTML += '<hr>' +i;
+  }
+} */
+
+
 
 /* x and y coordinates on mouse double clicks */
 document.getElementById("test").ondblclick = () => {fun();};
@@ -36,5 +55,5 @@ const timer = () =>{
 setTimeout(timer, 5000);
 
 /* timer 15s idling */
-/* setTimeout(() => alert("Hurry up!"), 5000);
- */
+setTimeout(() => alert("Hurry up!"), 5000);
+
