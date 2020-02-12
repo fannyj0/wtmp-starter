@@ -17,6 +17,7 @@ const cheat = (word) =>{
   });
 };
 cheat('Hello');
+
 /* const map = {};
 onkeydown = onkeyup = (e) =>{
   e = e || event;
@@ -59,12 +60,24 @@ const fun = () =>{
 
 /* timer 15s browsing */
 const timer = () =>{
-  if(fun === true){
-  console.log("hurry up!");
-  }
+  setTimeout(() => {
+    alert('hurry up!');
+  }, 15000);
 };
-setTimeout(timer, 5000);
+timer();
 
 /* timer 15s idling */
-setTimeout(() => alert("Hurry up!"), 5000);
+const timer2 = (duration) =>{
+  let timer;
+  const resetTimer = (event) =>{
+    clearTimeout(timer);
+    timer = setTimeout(() =>{
+      alert('do something');
+    },duration * 1000);
+};
+resetTimer();
 
+document.addEventListener('keypress', resetTimer);
+document.addEventListener('mousemove', resetTimer);
+};
+timer2(15);
