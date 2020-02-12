@@ -6,6 +6,17 @@ document.addEventListener('keydown', event =>{
   }
 });
 
+const cheat = (word) =>{
+  let keyPresses = new Array(word.length);
+  document.addEventListener('keypress', event =>{
+    keyPresses.shift();
+    keyPresses.push(event.key);
+    if (keyPresses.join('').toLowerCase() === word.toLowerCase()){
+      alert("Correct cheat code");
+    }
+  });
+};
+cheat('Hello');
 /* const map = {};
 onkeydown = onkeyup = (e) =>{
   e = e || event;
