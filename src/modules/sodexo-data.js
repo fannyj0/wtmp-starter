@@ -10,16 +10,23 @@ let coursesFi = [];
  *
  * @param {Object} sodexoDailyMenu
  */
-const parseSodexoMenu = (sodexoDailyMenu) => {
+const parseDailyMenu = (sodexoDailyMenu, lang) => {
   const courses = Object.values(sodexoDailyMenu);
-  for (const course of courses) {
-    coursesFi.push(course.category + ": " +  course.title_fi);
-    coursesEn.push(course.title_en);
+  let dailyMenu = [];
+  for (const course of courses){
+    if (lang === 'fi'){
+      dailyMenu.push(course.category + ": " + course.title_fi);
+    }else{
+        dailyMenu.push(course.title_en);
+    }
   }
+  return dailyMenu;
 };
 
-parseSodexoMenu(SodexoLunchMenu.courses);
+const getDailyMenu = (lang, weekDay = 0) =>{
+  return parseDailyMenu(SodexoLunchMenu.courses, lang);
+};
 
-const SodexoData = {coursesEn, coursesFi};
+const SodexoData = {getDailyMenu};
 
 export default SodexoData;

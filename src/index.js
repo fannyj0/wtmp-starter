@@ -1,5 +1,5 @@
 import SodexoData from './modules/sodexo-data';
-import {getParsedMenuFazer} from './modules/fazer-data';
+import FazerData from './modules/fazer-data';
 
 let lang = 'fi';
 
@@ -45,40 +45,27 @@ const pickRandomCourse = courses => {
   return courses[randomIndex];
 };
 const displayRandomCourse = () => {
-  if(lang === 'fi'){
-    alert('Sodexo: '+ pickRandomCourse(SodexoData.coursesFi) + '\n'+ 'Fazer: '+ pickRandomCourse(getParsedMenuFazer('fi')));
-
-  }else{
-    alert('Sodexo: '+ pickRandomCourse(SodexoData.coursesEn) + '\n'+ 'Fazer: '+ pickRandomCourse(getParsedMenuFazer('en')));
-  }
-
+  alert('Sodexo: '+ pickRandomCourse(SodexoData.getDailyMenu(lang)) + '\n'+ 'Fazer: '+ pickRandomCourse(FazerData.getDailyMenu(lang)));
 };
 
 const switchLanguage = () => {
   if (lang === 'fi') {
     lang = 'en';
-    renderMenu('sodexo', SodexoData.coursesEn);
-    renderMenu('fazer', getParsedMenuFazer('en'));
   } else {
     lang = 'fi';
-    renderMenu('sodexo', SodexoData.coursesFi);
-    renderMenu('fazer', getParsedMenuFazer('fi'));
   }
+  renderMenu('sodexo', SodexoData.getDailyMenu(lang));
+  renderMenu('fazer', FazerData.getDailyMenu(lang));
 };
 
 const renderSortedMenu = () => {
-  if(lang === 'fi'){
-    renderMenu('sodexo', sortCourses(SodexoData.coursesFi));
-    renderMenu('fazer', sortCourses(getParsedMenuFazer('fi')));
-  }else if (lang === 'en'){
-    renderMenu('sodexo', sortCourses(SodexoData.coursesEn));
-    renderMenu('fazer', sortCourses(getParsedMenuFazer('en')));
-  }
+  renderMenu('sodexo', sortCourses(SodexoData.getDailyMenu(lang)));
+  renderMenu('fazer', sortCourses(FazerData.getDailyMenu(lang)));
 };
 
 const init = () => {
-  renderMenu('sodexo', SodexoData.coursesFi);
-  renderMenu('fazer', getParsedMenuFazer('fi'));
+  renderMenu('sodexo', SodexoData.getDailyMenu('fi'));
+  renderMenu('fazer', FazerData.getDailyMenu('fi'));
   document.querySelector('#switch-lang').addEventListener('click', switchLanguage);
   document.querySelector('#sort-menu').addEventListener('click', renderSortedMenu);
   document.querySelector('#pick-dish').addEventListener('click', displayRandomCourse);

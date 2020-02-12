@@ -23,11 +23,15 @@ const parseDailyMenu = (menuData, dayOfWeek) => {
 };
 // Usage
 let coursesFi = parseDailyMenu(FazerLunchMenu, 0);
- console.log('parsed fazer menu', coursesFi);
+ //console.log('parsed fazer menu', coursesFi);
 let coursesEn = parseDailyMenu(FazerLunchMenuEn, 0);;
 
-const getParsedMenu = (lang = 'fi') => {
-  return (lang == 'fi') ? coursesFi : coursesEn;
+const getDailyMenu = (lang, weekDay = 0) =>{
+  return (lang == 'fi') ?
+  parseDailyMenu(FazerLunchMenu, weekDay)
+  :
+  parseDailyMenu(FazerLunchMenuEn, weekDay);
 };
+const FazerData = {getDailyMenu};
 
-export {getParsedMenu as getParsedMenuFazer};
+export default FazerData;
