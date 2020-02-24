@@ -72,3 +72,23 @@ const init = () => {
 };
 
 init();
+
+const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+
+const getJsonMenu = async (menuUrl, useProxy = false) => {
+  let response;
+  try {
+      response = await fetch(`${useProxy ? proxyUrl : ''}${menuUrl}`);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status} ${response.statusText}`);
+    }
+  } catch (error){
+    console.log('fetch menu error', error.message);
+  }
+  let repos = await response.json();
+  return repos;
+};
+getJsonMenu('https://www.sodexo.fi/ruokalistat/output/weekly_json/152')
+.then(data => console.log('sodexo', data));
+getJsonMenu('https://www.fazerfoodco.fi/modules/json/json/Index?costNumber=3208&language=fi')
+.then(data => console.log('fazer', data));

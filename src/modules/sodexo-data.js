@@ -1,6 +1,6 @@
 import SodexoLunchMenu from '../assets/sodexo.json';
 
-console.log(SodexoLunchMenu.courses);
+//console.log(SodexoLunchMenu.courses);
 
 let coursesEn = [];
 let coursesFi = [];
